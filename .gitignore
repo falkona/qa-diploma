@@ -42,3 +42,4 @@ out/
 *.rar
 
 !gradle/wrapper/gradle-wrapper.jar
+/data
