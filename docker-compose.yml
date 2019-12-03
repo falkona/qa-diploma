@@ -4,7 +4,7 @@ services:
         build: ./artifacts/gate-simulator
         image: node-app:1.0
         ports:
-        - '9990:9999'
+            - '9990:9999'
     mysql:
         image: mysql:latest
         container_name: mysql-container
