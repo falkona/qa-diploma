@@ -23,6 +23,7 @@ public class PaymentPage {
     private SelenideElement ownerInput = ownerField.$(".input__control");
     private SelenideElement cvcField = $(byText("CVC/CVV")).parent();
     private SelenideElement cvcInput = cvcField.$(".input__control");
+    private SelenideElement notificationSuccess = $(".notification_status_ok ");
 
     @Test
     public void shouldBeErrorCardNumberInvalid() {
@@ -42,6 +43,36 @@ public class PaymentPage {
         continueButton.click();
 
         monthField.$(".input__sub").shouldHave(Condition.exactText("Неверно указан срок действия карты"));
+    }
+
+    @Test
+    public void shouldBeErrorEarlyYear() {
+        open(host);
+        paymentButton.click();
+        fillData("4444444444444441", "12", "18", "Нос Дарья","456");
+        continueButton.click();
+
+        yearField.$(".input__sub").shouldHave(Condition.exactText("Истёк срок действия карты"));
+    }
+
+    @Test
+    public void shouldBeSuccessCurrentMonthAndYear() {
+        open(host);
+        paymentButton.click();
+        fillData("4444444444444441", "12", "19", "Нос Дарья","456");
+        continueButton.click();
+
+        notificationSuccess.waitUntil(Condition.visible, 15000);
+    }
+
+    @Test
+    public void shouldBeErrorShortCvc() {
+        open(host);
+        paymentButton.click();
+        fillData("4444444444444441", "12", "22", "Нос Дарья","45");
+        continueButton.click();
+
+        cvcField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 
     public void fillData(String cardNumber, String month, String year, String owner, String cvc) {
