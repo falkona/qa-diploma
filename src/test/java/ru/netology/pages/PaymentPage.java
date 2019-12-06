@@ -2,85 +2,43 @@ package ru.netology.pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import lombok.Data;
+import lombok.Getter;
 import org.junit.jupiter.api.Test;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+@Data
 public class PaymentPage {
 
     private String host = "http://localhost:8080";
-    private SelenideElement paymentButton = $(byText("Купить")).parent().parent();
-    private SelenideElement continueButton = $(byText("Продолжить")).parent().parent();
-    private SelenideElement cardNumberField = $(byText("Номер карты")).parent();
-    private SelenideElement cardNumberInput = cardNumberField.$(".input__control");
-    private SelenideElement monthField = $(byText("Месяц")).parent();
-    private SelenideElement monthInput = monthField.$(".input__control");
-    private SelenideElement yearField = $(byText("Год")).parent();
-    private SelenideElement yearInput = yearField.$(".input__control");
-    private SelenideElement ownerField = $(byText("Владелец")).parent();
-    private SelenideElement ownerInput = ownerField.$(".input__control");
-    private SelenideElement cvcField = $(byText("CVC/CVV")).parent();
-    private SelenideElement cvcInput = cvcField.$(".input__control");
-    private SelenideElement notificationSuccess = $(".notification_status_ok ");
+    @Getter private SelenideElement paymentButton = $(byText("Купить")).parent().parent();
+    @Getter private SelenideElement continueButton = $(byText("Продолжить")).parent().parent();
+    @Getter private SelenideElement cardNumberField = $(byText("Номер карты")).parent();
+    @Getter private SelenideElement monthField = $(byText("Месяц")).parent();
+    @Getter private SelenideElement yearField = $(byText("Год")).parent();
+    @Getter private SelenideElement ownerField = $(byText("Владелец")).parent();
+    @Getter private SelenideElement cvcField = $(byText("CVC/CVV")).parent();
+    @Getter private SelenideElement notificationSuccess = $(".notification_status_ok ");
+    @Getter private SelenideElement notificationError = $(".notification_status_error");
 
-    @Test
-    public void shouldBeErrorCardNumberInvalid() {
+    public PaymentPage() {
         open(host);
         paymentButton.click();
-        fillData("444411115555777", "12", "22", "Нос Дарья","999");
-        continueButton.click();
-
-        cardNumberField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 
-    @Test
-    public void shouldBeErrorEarlyMonth() {
-        open(host);
-        paymentButton.click();
-        fillData("4444444444444441", "11", "19", "Нос Дарья","456");
+    public void commit() {
         continueButton.click();
-
-        monthField.$(".input__sub").shouldHave(Condition.exactText("Неверно указан срок действия карты"));
-    }
-
-    @Test
-    public void shouldBeErrorEarlyYear() {
-        open(host);
-        paymentButton.click();
-        fillData("4444444444444441", "12", "18", "Нос Дарья","456");
-        continueButton.click();
-
-        yearField.$(".input__sub").shouldHave(Condition.exactText("Истёк срок действия карты"));
-    }
-
-    @Test
-    public void shouldBeSuccessCurrentMonthAndYear() {
-        open(host);
-        paymentButton.click();
-        fillData("4444444444444441", "12", "19", "Нос Дарья","456");
-        continueButton.click();
-
-        notificationSuccess.waitUntil(Condition.visible, 15000);
-    }
-
-    @Test
-    public void shouldBeErrorShortCvc() {
-        open(host);
-        paymentButton.click();
-        fillData("4444444444444441", "12", "22", "Нос Дарья","45");
-        continueButton.click();
-
-        cvcField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 
     public void fillData(String cardNumber, String month, String year, String owner, String cvc) {
-        cardNumberInput.setValue(cardNumber);
-        monthInput.setValue(month);
-        yearInput.setValue(year);
-        ownerInput.setValue(owner);
-        cvcInput.setValue(cvc);
+        cardNumberField.$(".input__control").setValue(cardNumber);
+        monthField.$(".input__control").setValue(month);
+        yearField.$(".input__control").setValue(year);
+        ownerField.$(".input__control").setValue(owner);
+        cvcField.$(".input__control").setValue(cvc);
     }
 
 }
