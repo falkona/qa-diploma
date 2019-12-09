@@ -121,7 +121,7 @@ public class PurchaseTest {
         PaymentPage paymentPage = startPage.toPaymentPage();
         paymentPage.fillData("", "12", "22", "Дарья","452");
         paymentPage.commit();
-        paymentPage.getEmptyNameError();
+        paymentPage.getEmptyCardError();
     }
 
     @DisplayName("12. Проверка покупки с несуществующей карты - UI")
