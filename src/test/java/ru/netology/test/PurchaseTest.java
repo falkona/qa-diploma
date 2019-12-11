@@ -1,8 +1,8 @@
 package ru.netology.test;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
+import com.codeborne.selenide.logevents.SelenideLogger;
+import io.qameta.allure.selenide.AllureSelenide;
+import org.junit.jupiter.api.*;
 import ru.netology.pages.CreditPage;
 import ru.netology.pages.Page;
 import ru.netology.pages.PaymentPage;
@@ -174,5 +174,15 @@ public class PurchaseTest {
     @AfterEach
     public void cleanTables() throws SQLException{
         SqlHelper.cleanTables();
+    }
+
+    @BeforeAll
+    static void setUpAll() {
+        SelenideLogger.addListener("allure", new AllureSelenide());
+    }
+
+    @AfterAll
+    static void tearDownAll() {
+        SelenideLogger.removeListener("allure");
     }
 }

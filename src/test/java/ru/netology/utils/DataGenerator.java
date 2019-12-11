@@ -77,7 +77,7 @@ public class DataGenerator {
 
     public static String randomCardNumber() {
         Faker faker = new Faker();
-        return faker.finance().creditCard(CreditCardType.VISA);
+        return Long.toString(faker.number().randomNumber(16, true));
     }
 
     public static String approvedCardNumber() {
