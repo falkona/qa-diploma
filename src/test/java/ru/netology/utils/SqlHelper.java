@@ -71,11 +71,9 @@ public class SqlHelper {
         return "jdbc:postgresql://192.168.99.100:5432/app";
     }
 
-
     private static String getUser() {
         return "app";
     }
-
 
     private static String getPassword() {
         return "pass";
