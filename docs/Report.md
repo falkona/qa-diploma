@@ -28,3 +28,8 @@
 
 
 ### Общие рекомендации
+
+В ходе тестирования были найдены баги:
+* [В таблице order_entity заполняется поле payment_id вместо credit_id при покупке в кредит](https://github.com/falkona/qa-diploma/issues/7)
+* [При покупке с "неуспешной" карты показывается нотификация "Успешно"](https://github.com/falkona/qa-diploma/issues/8)
+
