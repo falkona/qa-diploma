@@ -27,7 +27,7 @@ public class SqlHelper {
         String dataStatement = "select pe.*, oe.* from payment_entity as pe " +
                 "left join order_entity as oe " +
                 "on pe. transaction_id = oe.payment_id " +
-                "where pe.status = 'APPROVED' and oe.payment_id is not NULL;";
+                "where pe.status = 'APPROVED' and oe.payment_id is not NULL and pe.amount = 4500000;";
         return executeQuery(dataStatement);
     }
 
@@ -35,7 +35,7 @@ public class SqlHelper {
         String dataStatement = "select pe.*, oe.* from payment_entity as pe " +
                 "left join order_entity as oe " +
                 "on pe. transaction_id = oe.payment_id " +
-                "where pe.status = 'DECLINED' and oe.payment_id is not NULL;";
+                "where pe.status = 'DECLINED' and oe.payment_id is not NULL and pe.amount = 4500000;";
         return executeQuery(dataStatement);
     }
 

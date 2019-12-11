@@ -3,6 +3,7 @@ package ru.netology.pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import lombok.Getter;
+import ru.netology.utils.Card;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
@@ -29,12 +30,12 @@ public class Page {
         continueButton.click();
     }
 
-    public void fillData(String cardNumber, String month, String year, String owner, String cvc) {
-        cardNumberField.$(".input__control").setValue(cardNumber);
-        monthField.$(".input__control").setValue(month);
-        yearField.$(".input__control").setValue(year);
-        ownerField.$(".input__control").setValue(owner);
-        cvcField.$(".input__control").setValue(cvc);
+    public void fillData(Card card) {
+        cardNumberField.$(".input__control").setValue(card.getCardNumber());
+        monthField.$(".input__control").setValue(card.getMonth());
+        yearField.$(".input__control").setValue(card.getYear());
+        ownerField.$(".input__control").setValue(card.getOwner());
+        cvcField.$(".input__control").setValue(card.getCvc());
     }
 
     public PaymentPage toPaymentPage() {
@@ -49,27 +50,27 @@ public class Page {
         return creditPage;
     }
 
-    public void getCardNumberError() {
+    public void checkCardNumberError() {
         cardNumberField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 
-    public void getWrongMonthError() {
+    public void checkWrongMonthError() {
         monthField.$(".input__sub").shouldHave(Condition.exactText("Неверно указан срок действия карты"));
     }
 
-    public void getEarlyYearError() {
+    public void checkEarlyYearError() {
         yearField.$(".input__sub").shouldHave(Condition.exactText("Истёк срок действия карты"));
     }
 
-    public void getWrongCvcError() {
+    public void checkWrongCvcError() {
         cvcField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 
-    public void getEmptyNameError() {
+    public void checkEmptyNameError() {
         ownerField.$(".input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
     }
 
-    public void getEmptyCardError() {
+    public void checkEmptyCardError() {
         cardNumberField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
     }
 }
