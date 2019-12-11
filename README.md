@@ -2,11 +2,11 @@
 
 ### Документация
 
-[План тестирования]()
+[План автоматизации тестирования](https://github.com/falkona/qa-diploma/blob/master/docs/Plan.md)
 
-* Файл docker-compose.yml находится в корневом каталоге
-* SUT, gate-simulator, application.properties находятся в папке /artifacts
-* В файле application.properties указан хост 192.168.99.100 для работы с Windows 10 Домашняя
+* Файл [docker-compose.yml](https://github.com/falkona/qa-diploma/blob/master/docker-compose.yml) находится в корневом каталоге
+* SUT, gate-simulator, application.properties находятся в папке [/artifacts](https://github.com/falkona/qa-diploma/tree/master/artifacts)
+* В файле [application.properties](https://github.com/falkona/qa-diploma/blob/master/artifacts/application.properties) указан хост 192.168.99.100 для работы с Windows 10 Домашняя
 * Пока что реализована только поддержка MySQL
 
 ### Как запускать
