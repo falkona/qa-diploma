@@ -1,5 +1,9 @@
 # Дипломный проект
 
+### Документация
+
+[План тестирования]()
+
 * Файл docker-compose.yml находится в корневом каталоге
 * SUT, gate-simulator, application.properties находятся в папке /artifacts
 * В файле application.properties указан хост 192.168.99.100 для работы с Windows 10 Домашняя
