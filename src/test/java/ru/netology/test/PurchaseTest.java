@@ -30,7 +30,8 @@ public class PurchaseTest {
         paymentPage.commit();
         paymentPage.checkOperationApproved();
 
-        assertTrue(SqlHelper.checkApprovedPayment(), "Строка не найдена");
+        assertTrue(SqlHelper.checkApprovedPaymentMySQL(), "Строка не найдена в БД MySql");
+        assertTrue(SqlHelper.checkApprovedPaymentPostgres(), "Строка не найдена в БД Postgres");
     }
 
     @DisplayName("2. Оплата по карте: неуспешная операция")
@@ -45,7 +46,8 @@ public class PurchaseTest {
         paymentPage.commit();
         paymentPage.checkOperationDeclined();
 
-        assertTrue(SqlHelper.checkDeclinedPayment(), "Строка не найдена");
+        assertTrue(SqlHelper.checkDeclinedPaymentMySQL(), "Строка не найдена в БД MySql");
+        assertTrue(SqlHelper.checkDeclinedPaymentPostgres(), "Строка не найдена в БД Postgres");
     }
 
     @DisplayName("3. Оплата в кредит: успешная операция + 8. Проверка полей Месяц, Год (дата равна текущей)")
@@ -62,7 +64,8 @@ public class PurchaseTest {
         creditPage.commit();
         creditPage.checkOperationApproved();
 
-        assertTrue(SqlHelper.checkApprovedCredit(), "Строка не найдена");
+        assertTrue(SqlHelper.checkApprovedCreditMySQL(), "Строка не найдена в БД MySql");
+        assertTrue(SqlHelper.checkApprovedCreditPostgres(), "Строка не найдена в БД Postgres");
     }
 
     @DisplayName("4. Оплата в кредит: неуспешная операция")
@@ -77,7 +80,8 @@ public class PurchaseTest {
         creditPage.commit();
         creditPage.checkOperationDeclined();
 
-        assertTrue(SqlHelper.checkDeclinedCredit(), "Строка не найдена");
+        assertTrue(SqlHelper.checkDeclinedCreditMySQL(), "Строка не найдена");
+        assertTrue(SqlHelper.checkDeclinedCreditPostgres(), "Строка не найдена");
     }
 
     @DisplayName("5. Проверка поля Номер карты")

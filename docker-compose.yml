@@ -32,3 +32,4 @@ services:
             - POSTGRES_USER=app
             #- PGDATA=/var/lib/postgresql/pgdata
             - POSTGRES_DB=app
+
