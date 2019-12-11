@@ -1,7 +1,5 @@
 package ru.netology.utils;
 
-import lombok.Getter;
-
 import java.sql.*;
 
 public class SqlHelper {
@@ -70,7 +68,7 @@ public class SqlHelper {
     }
 
     private static String getUrl() {
-        return "jdbc:mysql://192.168.99.100:3306/app";
+        return "jdbc:postgresql://192.168.99.100:5432/app";
     }
 
 
