@@ -10,24 +10,15 @@ public class SqlHelper {
         String deleteCreditEntity = "delete from credit_request_entity;";
 
         try (
-                Connection connectionMysql = DriverManager.getConnection(getUrlMySQL(), getUser(), getPassword());
-                //Connection connectionPostgres = DriverManager.getConnection(getUrlPostgers(), getUser(), getPassword());
+                Connection connectionMysql = DriverManager.getConnection(getUrl(), getUser(), getPassword());
 
                 PreparedStatement statementOrderEntity = connectionMysql.prepareStatement(deleteOrderEntity);
                 PreparedStatement statementPaymentEntity = connectionMysql.prepareStatement(deletePaymentEntity);
                 PreparedStatement statementCreditEntity = connectionMysql.prepareStatement(deleteCreditEntity);
-
-                //PreparedStatement statementOrderEntityPg = connectionPostgres.prepareStatement(deleteOrderEntity);
-                //PreparedStatement statementPaymentEntityPg = connectionPostgres.prepareStatement(deletePaymentEntity);
-                //PreparedStatement statementCreditEntityPg = connectionPostgres.prepareStatement(deleteCreditEntity);
         ) {
             statementOrderEntity.executeUpdate();
             statementPaymentEntity.executeUpdate();
             statementCreditEntity.executeUpdate();
-
-            //statementOrderEntityPg.executeUpdate();
-            //statementPaymentEntityPg.executeUpdate();
-            //statementCreditEntityPg.executeUpdate();
         }
     }
 
@@ -38,12 +29,8 @@ public class SqlHelper {
                 "where pe.status = 'APPROVED' and oe.payment_id is not NULL and pe.amount = 4500000;";
     }
 
-    public static boolean checkApprovedPaymentMySQL() {
-        return executeQueryMySQL(approvedPaymentStatement());
-    }
-
-    public static boolean checkApprovedPaymentPostgres() {
-        return executeQueryPostgres(approvedPaymentStatement());
+    public static boolean checkApprovedPayment() {
+        return executeQuery(approvedPaymentStatement());
     }
 
     public static String declinedPaymentStatement() {
@@ -53,12 +40,8 @@ public class SqlHelper {
                 "where pe.status = 'DECLINED' and oe.payment_id is not NULL and pe.amount = 4500000;";
     }
 
-    public static boolean checkDeclinedPaymentMySQL() {
-        return executeQueryMySQL(declinedPaymentStatement());
-    }
-
-    public static boolean checkDeclinedPaymentPostgres() {
-        return executeQueryPostgres(declinedPaymentStatement());
+    public static boolean checkDeclinedPayment() {
+        return executeQuery(declinedPaymentStatement());
     }
 
     public static String approvedCreditStatement() {
@@ -68,12 +51,8 @@ public class SqlHelper {
                 "where ce.status = 'APPROVED' and oe.credit_id is not NULL;";
     }
 
-    public static boolean checkApprovedCreditMySQL() {
-        return executeQueryMySQL(approvedCreditStatement());
-    }
-
-    public static boolean checkApprovedCreditPostgres() {
-        return executeQueryPostgres(approvedCreditStatement());
+    public static boolean checkApprovedCredit() {
+        return executeQuery(approvedCreditStatement());
     }
 
     public static String declinedCreditStatement() {
@@ -83,18 +62,14 @@ public class SqlHelper {
                 "where ce.status = 'DECLINED' and oe.credit_id is not NULL;";
     }
 
-    public static boolean checkDeclinedCreditMySQL() {
-        return executeQueryMySQL(declinedCreditStatement());
+    public static boolean checkDeclinedCredit() {
+        return executeQuery(declinedCreditStatement());
     }
 
-    public static boolean checkDeclinedCreditPostgres() {
-        return executeQueryPostgres(declinedCreditStatement());
-    }
-
-    private static  boolean executeQueryMySQL(String dataStatement) {
+    private static  boolean executeQuery(String dataStatement) {
         boolean result = false;
         try {
-            Connection connection = DriverManager.getConnection(getUrlMySQL(), getUser(), getPassword());
+            Connection connection = DriverManager.getConnection(getUrl(), getUser(), getPassword());
             PreparedStatement statement = connection.prepareStatement(dataStatement);
             ResultSet resultSet = statement.executeQuery();
             result = resultSet.next();
@@ -105,26 +80,7 @@ public class SqlHelper {
         return result;
     }
 
-    private static  boolean executeQueryPostgres(String dataStatement) {
-        boolean result = false;
-        try {
-            Connection connection = DriverManager.getConnection(getUrlPostgers(), getUser(), getPassword());
-            PreparedStatement statement = connection.prepareStatement(dataStatement);
-            ResultSet resultSet = statement.executeQuery();
-            result = resultSet.next();
-
-        } catch(SQLException exception) {
-            exception.getErrorCode();
-        }
-        return result;
-    }
-
-    private static String getUrlPostgers() {
-        return "jdbc:postgresql://192.168.99.100:5432/app";
-    }
-
-    private static String getUrlMySQL() {
-        //return "jdbc:mysql://192.168.99.100:3306/app";
+    private static String getUrl() {
         return System.getProperty("test.db.url");
     }
 
