@@ -4,6 +4,11 @@
 
 [План автоматизации тестирования](https://github.com/falkona/qa-diploma/blob/master/docs/Plan.md)
 
+[Отчет по итогам тестирования](https://github.com/falkona/qa-diploma/blob/master/docs/Report.md)
+
+[Отчет по итогам автоматизации](https://github.com/falkona/qa-diploma/blob/master/docs/Summary.md)
+
+
 * Файлы docker-compose находится в корневом каталоге
 * SUT, gate-simulator, application.properties находятся в папке [/artifacts](https://github.com/falkona/qa-diploma/tree/master/artifacts)
 * В файле [application.properties](https://github.com/falkona/qa-diploma/blob/master/artifacts/application.properties) указан хост 192.168.99.100 для работы с Windows 10 Домашняя
@@ -42,3 +47,4 @@
     ```
     gradlew test -Dtest.db.url=jdbc:postgresql://192.168.99.100:5432/app
     ```
+   
