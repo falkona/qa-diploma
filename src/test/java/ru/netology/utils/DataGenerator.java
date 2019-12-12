@@ -31,7 +31,7 @@ public class DataGenerator {
 
     public static String pastYear() {
         Random random = new Random();
-        int i = random.nextInt(19) + 1;
+        int i = random.nextInt(18) + 1;
         return String.format("%02d", i);
     }
 
