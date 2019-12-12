@@ -11,23 +11,23 @@ public class SqlHelper {
 
         try (
                 Connection connectionMysql = DriverManager.getConnection(getUrlMySQL(), getUser(), getPassword());
-                Connection connectionPostgres = DriverManager.getConnection(getUrlPostgers(), getUser(), getPassword());
+                //Connection connectionPostgres = DriverManager.getConnection(getUrlPostgers(), getUser(), getPassword());
 
                 PreparedStatement statementOrderEntity = connectionMysql.prepareStatement(deleteOrderEntity);
                 PreparedStatement statementPaymentEntity = connectionMysql.prepareStatement(deletePaymentEntity);
                 PreparedStatement statementCreditEntity = connectionMysql.prepareStatement(deleteCreditEntity);
 
-                PreparedStatement statementOrderEntityPg = connectionPostgres.prepareStatement(deleteOrderEntity);
-                PreparedStatement statementPaymentEntityPg = connectionPostgres.prepareStatement(deletePaymentEntity);
-                PreparedStatement statementCreditEntityPg = connectionPostgres.prepareStatement(deleteCreditEntity);
+                //PreparedStatement statementOrderEntityPg = connectionPostgres.prepareStatement(deleteOrderEntity);
+                //PreparedStatement statementPaymentEntityPg = connectionPostgres.prepareStatement(deletePaymentEntity);
+                //PreparedStatement statementCreditEntityPg = connectionPostgres.prepareStatement(deleteCreditEntity);
         ) {
             statementOrderEntity.executeUpdate();
             statementPaymentEntity.executeUpdate();
             statementCreditEntity.executeUpdate();
 
-            statementOrderEntityPg.executeUpdate();
-            statementPaymentEntityPg.executeUpdate();
-            statementCreditEntityPg.executeUpdate();
+            //statementOrderEntityPg.executeUpdate();
+            //statementPaymentEntityPg.executeUpdate();
+            //statementCreditEntityPg.executeUpdate();
         }
     }
 
@@ -124,7 +124,8 @@ public class SqlHelper {
     }
 
     private static String getUrlMySQL() {
-        return "jdbc:mysql://192.168.99.100:3306/app";
+        //return "jdbc:mysql://192.168.99.100:3306/app";
+        return System.getProperty("test.db.url");
     }
 
     private static String getUser() {
