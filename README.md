@@ -4,23 +4,41 @@
 
 [План автоматизации тестирования](https://github.com/falkona/qa-diploma/blob/master/docs/Plan.md)
 
-* Файл [docker-compose.yml](https://github.com/falkona/qa-diploma/blob/master/docker-compose.yml) находится в корневом каталоге
+* Файлы docker-compose находится в корневом каталоге
 * SUT, gate-simulator, application.properties находятся в папке [/artifacts](https://github.com/falkona/qa-diploma/tree/master/artifacts)
 * В файле [application.properties](https://github.com/falkona/qa-diploma/blob/master/artifacts/application.properties) указан хост 192.168.99.100 для работы с Windows 10 Домашняя
-* Пока что реализована только поддержка MySQL
+* Реализована поддержка MySQL и Postgres
 
 ### Как запускать
-1. В корневом каталоге запустить контейнеры: MySQL, Node.js, Postgres
+
+#### Для работы с MySQL
+1. Запустить контейнеры: MySQL, Node.js
     ```
-    docker-compose up -d
+    docker-compose -f docker-compose-ms.yml up -d 
     ```
 
-2. В каталоге /artifacts запустить SUT
+2. Запустить SUT
     ```
-    java -jar aqa-shop.jar
+    java -Dspring.datasource.url=jdbc:mysql://192.168.99.100:3306/app -jar aqa-shop.jar
     ```
 
-3. В корневом каталоге запустить тесты
+3. Запустить тесты
     ```
-    gradlew test
+    gradlew test -Dtest.db.url=jdbc:mysql://192.168.99.100:3306/app
+    ```
+   
+#### Для работы с Postgres
+1. Запустить контейнеры: Postgres, Node.js
+    ```
+    docker-compose -f docker-compose-ps.yml up -d  
+    ```
+
+2. Запустить SUT
+    ```
+    java -Dspring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app -jar aqa-shop.jar
+    ```
+
+3. Запустить тесты
+    ```
+    gradlew test -Dtest.db.url=jdbc:postgresql://192.168.99.100:5432/app
     ```

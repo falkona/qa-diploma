@@ -1,6 +1,5 @@
 package ru.netology.utils;
 
-import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
 
 import java.time.LocalDate;
@@ -85,7 +84,6 @@ public class DataGenerator {
     }
 
     public static String declinedCardNumber() {
-        Faker faker = new Faker();
         return "4444444444444442";
     }
 
