@@ -24,12 +24,17 @@
 
 2. Запустить SUT
     ```
-    java -Dspring.datasource.url=jdbc:mysql://192.168.99.100:3306/app -jar aqa-shop.jar
+    java -Dspring.datasource.url=jdbc:mysql://192.168.99.100:3306/app -jar artifacts/aqa-shop.jar
     ```
 
 3. Запустить тесты
     ```
     gradlew test -Dtest.db.url=jdbc:mysql://192.168.99.100:3306/app
+    ```
+   
+4. После прогона тестов остановить контейнеры
+    ```
+    docker-compose -f docker-compose-ms.yml down
     ```
    
 #### Для работы с Postgres
@@ -40,11 +45,22 @@
 
 2. Запустить SUT
     ```
-    java -Dspring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app -jar aqa-shop.jar
+    java -Dspring.datasource.url=jdbc:postgresql://192.168.99.100:5432/app -jar artifacts/aqa-shop.jar
     ```
 
 3. Запустить тесты
     ```
     gradlew test -Dtest.db.url=jdbc:postgresql://192.168.99.100:5432/app
     ```
+4. После прогона тестов остановить контейнеры
+    ```
+    docker-compose -f docker-compose-ps.yml down
+    ```
    
+#### Allure
+
+Для формирования отчета в Allure необходимо выполнить команды
+```
+gradlew clean test allureReport 
+gradlew allureServe
+```
