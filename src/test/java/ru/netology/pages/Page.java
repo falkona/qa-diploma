@@ -11,13 +11,13 @@ import static com.codeborne.selenide.Selenide.*;
 public class Page {
 
     @Getter protected String host = "http://localhost:8080";
-    @Getter protected SelenideElement paymentButton = $(byText("Купить")).parent().parent();
-    @Getter protected SelenideElement creditButton = $(byText("Купить в кредит")).parent().parent();
-    @Getter protected SelenideElement continueButton = $(byText("Продолжить")).parent().parent();
-    @Getter protected SelenideElement cardNumberField = $(byText("Номер карты")).parent();
-    @Getter protected SelenideElement monthField = $(byText("Месяц")).parent();
-    @Getter protected SelenideElement yearField = $(byText("Год")).parent();
-    @Getter protected SelenideElement ownerField = $(byText("Владелец")).parent();
+    @Getter protected SelenideElement paymentButton = $(byText("РљСѓРїРёС‚СЊ")).parent().parent();
+    @Getter protected SelenideElement creditButton = $(byText("РљСѓРїРёС‚СЊ РІ РєСЂРµРґРёС‚")).parent().parent();
+    @Getter protected SelenideElement continueButton = $(byText("РџСЂРѕРґРѕР»Р¶РёС‚СЊ")).parent().parent();
+    @Getter protected SelenideElement cardNumberField = $(byText("РќРѕРјРµСЂ РєР°СЂС‚С‹")).parent();
+    @Getter protected SelenideElement monthField = $(byText("РњРµСЃСЏС†")).parent();
+    @Getter protected SelenideElement yearField = $(byText("Р“РѕРґ")).parent();
+    @Getter protected SelenideElement ownerField = $(byText("Р’Р»Р°РґРµР»РµС†")).parent();
     @Getter protected SelenideElement cvcField = $(byText("CVC/CVV")).parent();
     @Getter protected SelenideElement notificationSuccess = $(".notification_status_ok ");
     @Getter protected SelenideElement notificationError = $(".notification_status_error");
@@ -51,26 +51,26 @@ public class Page {
     }
 
     public void checkCardNumberError() {
-        cardNumberField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
+        cardNumberField.$(".input__sub").shouldHave(Condition.exactText("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚"));
     }
 
     public void checkWrongMonthError() {
-        monthField.$(".input__sub").shouldHave(Condition.exactText("Неверно указан срок действия карты"));
+        monthField.$(".input__sub").shouldHave(Condition.exactText("РќРµРІРµСЂРЅРѕ СѓРєР°Р·Р°РЅ СЃСЂРѕРє РґРµР№СЃС‚РІРёСЏ РєР°СЂС‚С‹"));
     }
 
     public void checkEarlyYearError() {
-        yearField.$(".input__sub").shouldHave(Condition.exactText("Истёк срок действия карты"));
+        yearField.$(".input__sub").shouldHave(Condition.exactText("РСЃС‚С‘Рє СЃСЂРѕРє РґРµР№СЃС‚РІРёСЏ РєР°СЂС‚С‹"));
     }
 
     public void checkWrongCvcError() {
-        cvcField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
+        cvcField.$(".input__sub").shouldHave(Condition.exactText("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚"));
     }
 
     public void checkEmptyNameError() {
-        ownerField.$(".input__sub").shouldHave(Condition.exactText("Поле обязательно для заполнения"));
+        ownerField.$(".input__sub").shouldHave(Condition.exactText("РџРѕР»Рµ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ РґР»СЏ Р·Р°РїРѕР»РЅРµРЅРёСЏ"));
     }
 
     public void checkEmptyCardError() {
-        cardNumberField.$(".input__sub").shouldHave(Condition.exactText("Неверный формат"));
+        cardNumberField.$(".input__sub").shouldHave(Condition.exactText("РќРµРІРµСЂРЅС‹Р№ С„РѕСЂРјР°С‚"));
     }
 }

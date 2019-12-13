@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class PurchaseTest {
 
-    @DisplayName("1. Оплата по карте: успешная операция + 8. Проверка полей Месяц, Год (дата равна текущей)")
+    @DisplayName("1. РћРїР»Р°С‚Р° РїРѕ РєР°СЂС‚Рµ: СѓСЃРїРµС€РЅР°СЏ РѕРїРµСЂР°С†РёСЏ + 8. РџСЂРѕРІРµСЂРєР° РїРѕР»РµР№ РњРµСЃСЏС†, Р“РѕРґ (РґР°С‚Р° СЂР°РІРЅР° С‚РµРєСѓС‰РµР№)")
     @Test
     public void shouldBeSuccessCurrentMonthAndYearPayment() {
         Card approvedCard = new Card();
@@ -30,10 +30,10 @@ public class PurchaseTest {
         paymentPage.commit();
         paymentPage.checkOperationApproved();
 
-        assertTrue(SqlHelper.checkApprovedPayment(), "Строка не найдена в БД");
+        assertTrue(SqlHelper.checkApprovedPayment(), "РЎС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР° РІ Р‘Р”");
     }
 
-    @DisplayName("2. Оплата по карте: неуспешная операция")
+    @DisplayName("2. РћРїР»Р°С‚Р° РїРѕ РєР°СЂС‚Рµ: РЅРµСѓСЃРїРµС€РЅР°СЏ РѕРїРµСЂР°С†РёСЏ")
     @Test
     public void shouldBeDeclinedValidCardPayment() {
         Card declinedCard = new Card();
@@ -45,10 +45,10 @@ public class PurchaseTest {
         paymentPage.commit();
         paymentPage.checkOperationDeclined();
 
-        assertTrue(SqlHelper.checkDeclinedPayment(), "Строка не найдена в БД");
+        assertTrue(SqlHelper.checkDeclinedPayment(), "РЎС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР° РІ Р‘Р”");
     }
 
-    @DisplayName("3. Оплата в кредит: успешная операция + 8. Проверка полей Месяц, Год (дата равна текущей)")
+    @DisplayName("3. РћРїР»Р°С‚Р° РІ РєСЂРµРґРёС‚: СѓСЃРїРµС€РЅР°СЏ РѕРїРµСЂР°С†РёСЏ + 8. РџСЂРѕРІРµСЂРєР° РїРѕР»РµР№ РњРµСЃСЏС†, Р“РѕРґ (РґР°С‚Р° СЂР°РІРЅР° С‚РµРєСѓС‰РµР№)")
     @Test
     public void shouldBeSuccessCurrentMonthAndYearCredit() {
         Card approvedCard = new Card();
@@ -62,10 +62,10 @@ public class PurchaseTest {
         creditPage.commit();
         creditPage.checkOperationApproved();
 
-        assertTrue(SqlHelper.checkApprovedCredit(), "Строка не найдена в БД");
+        assertTrue(SqlHelper.checkApprovedCredit(), "РЎС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР° РІ Р‘Р”");
     }
 
-    @DisplayName("4. Оплата в кредит: неуспешная операция")
+    @DisplayName("4. РћРїР»Р°С‚Р° РІ РєСЂРµРґРёС‚: РЅРµСѓСЃРїРµС€РЅР°СЏ РѕРїРµСЂР°С†РёСЏ")
     @Test
     public void shouldBeDeclinedValidCardCredit() {
         Card declinedCard = new Card();
@@ -77,10 +77,10 @@ public class PurchaseTest {
         creditPage.commit();
         creditPage.checkOperationDeclined();
 
-        assertTrue(SqlHelper.checkDeclinedCredit(), "Строка не найдена");
+        assertTrue(SqlHelper.checkDeclinedCredit(), "РЎС‚СЂРѕРєР° РЅРµ РЅР°Р№РґРµРЅР°");
     }
 
-    @DisplayName("5. Проверка поля Номер карты")
+    @DisplayName("5. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ РќРѕРјРµСЂ РєР°СЂС‚С‹")
     @Test
     public void shouldBeErrorCardNumberInvalid() {
         Card invalidCard = new Card();
@@ -93,7 +93,7 @@ public class PurchaseTest {
         paymentPage.checkCardNumberError();
     }
 
-    @DisplayName("6. Проверка поля Месяц (дата меньше текущей)")
+    @DisplayName("6. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ РњРµСЃСЏС† (РґР°С‚Р° РјРµРЅСЊС€Рµ С‚РµРєСѓС‰РµР№)")
     @Test
     public void shouldBeErrorEarlyMonth() {
         Card invalidCard = new Card();
@@ -107,7 +107,7 @@ public class PurchaseTest {
         paymentPage.checkWrongMonthError();
     }
 
-    @DisplayName("7. Проверка поля Год (дата меньше текущей)")
+    @DisplayName("7. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ Р“РѕРґ (РґР°С‚Р° РјРµРЅСЊС€Рµ С‚РµРєСѓС‰РµР№)")
     @Test
     public void shouldBeErrorEarlyYear() {
         Card invalidCard = new Card();
@@ -120,7 +120,7 @@ public class PurchaseTest {
         paymentPage.checkEarlyYearError();
     }
 
-    @DisplayName("9. Проверка поля cvc")
+    @DisplayName("9. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ cvc")
     @Test
     public void shouldBeErrorShortCvc() {
         Card invalidCard = new Card();
@@ -133,7 +133,7 @@ public class PurchaseTest {
         paymentPage.checkWrongCvcError();
     }
 
-    @DisplayName("10. Проверка поля Имя (не заполнено)")
+    @DisplayName("10. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ РРјСЏ (РЅРµ Р·Р°РїРѕР»РЅРµРЅРѕ)")
     @Test
     public void shouldBeErrorEmptyName() {
         Card invalidCard = new Card();
@@ -146,7 +146,7 @@ public class PurchaseTest {
         paymentPage.checkEmptyNameError();
     }
 
-    @DisplayName("11. Проверка поля Номер карты (не заполнено)")
+    @DisplayName("11. РџСЂРѕРІРµСЂРєР° РїРѕР»СЏ РќРѕРјРµСЂ РєР°СЂС‚С‹ (РЅРµ Р·Р°РїРѕР»РЅРµРЅРѕ)")
     @Test
     public void shouldBeErrorEmptyCard() {
         Card invalidCard = new Card();
@@ -159,7 +159,7 @@ public class PurchaseTest {
         paymentPage.checkEmptyCardError();
     }
 
-    @DisplayName("12. Проверка покупки с несуществующей карты - UI")
+    @DisplayName("12. РџСЂРѕРІРµСЂРєР° РїРѕРєСѓРїРєРё СЃ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµР№ РєР°СЂС‚С‹ - UI")
     @Test
     public void shouldBeErrorCardDoesNotExist() {
         Card invalidCard = new Card();

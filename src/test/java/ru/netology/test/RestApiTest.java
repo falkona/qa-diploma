@@ -12,14 +12,14 @@ import static org.hamcrest.Matchers.equalTo;
 
 public class RestApiTest {
 
-    @DisplayName("13. Проверка покупки с несуществующей карты - REST")
+    @DisplayName("13. РџСЂРѕРІРµСЂРєР° РїРѕРєСѓРїРєРё СЃ РЅРµСЃСѓС‰РµСЃС‚РІСѓСЋС‰РµР№ РєР°СЂС‚С‹ - REST")
     @Test
     public void shouldBeErrorCardDoesNotExistRest() {
         String request = "{\n" +
                 "           \"number\":\"4444 4444 4444 4443\",\n" +
                 "           \"year\":\"22\",\n" +
                 "           \"month\":\"08\",\n" +
-                "           \"holder\":\"Нос Дарья\",\n" +
+                "           \"holder\":\"РќРѕСЃ Р”Р°СЂСЊСЏ\",\n" +
                 "           \"cvc\":\"999\"}";
 
         given().
