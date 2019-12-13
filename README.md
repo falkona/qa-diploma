@@ -11,7 +11,7 @@
 
 * Файлы docker-compose находится в корневом каталоге
 * SUT, gate-simulator, application.properties находятся в папке [/artifacts](https://github.com/falkona/qa-diploma/tree/master/artifacts)
-* В файле [application.properties](https://github.com/falkona/qa-diploma/blob/master/artifacts/application.properties) указан хост 192.168.99.100 для работы с Windows 10 Домашняя
+* В файле [application.properties](https://github.com/falkona/qa-diploma/blob/master/application.properties) указан хост localhost. для работы с Windows 10 ниже Pro необходимо заменить хост на 192.168.99.100
 * Реализована поддержка MySQL и Postgres
 
 ### Как запускать
